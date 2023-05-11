@@ -1,6 +1,5 @@
 package me.pedrokaua.dslist.dto;
 
-import jakarta.persistence.Column;
 import me.pedrokaua.dslist.entities.Game;
 import org.springframework.beans.BeanUtils;
 

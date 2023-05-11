@@ -1,6 +1,7 @@
 package me.pedrokaua.dslist.dto;
 
 import me.pedrokaua.dslist.entities.Game;
+import me.pedrokaua.dslist.projections.GameMinProjection;
 
 public class GameMinDTO {
     private Long id;
@@ -19,6 +20,14 @@ public class GameMinDTO {
         this.title = entity.getTitle();
         this.imgUrl = entity.getImgUrl();
         this.score = entity.getScore();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        this.id = projection.getId();
+        this.year = projection.getYear();
+        this.title = projection.getTitle();
+        this.imgUrl = projection.getImgUrl();
+        this.score = projection.getScore();
     }
 
     public Long getId() {

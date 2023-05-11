@@ -3,6 +3,7 @@ package me.pedrokaua.dslist.services;
 import me.pedrokaua.dslist.dto.GameDTO;
 import me.pedrokaua.dslist.dto.GameMinDTO;
 import me.pedrokaua.dslist.entities.Game;
+import me.pedrokaua.dslist.projections.GameMinProjection;
 import me.pedrokaua.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,14 @@ public class GameService {
                 .map(g -> new GameMinDTO(g)).toList();
 
         return gamesDTOList;
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId){
+        List<GameMinProjection> gameMinProjections = gameRepository.searchByList(listId);
+        List<GameMinDTO> gamesMinDTO = gameMinProjections.stream()
+                .map(g -> new GameMinDTO(g)).toList();
+
+        return gamesMinDTO;
     }
 }
